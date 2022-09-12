@@ -66,6 +66,17 @@ a {
   .category-btn {
     margin: 10px;
   }
+  .video__details .video {
+    width: 100%;
+  }
+  .video__details .video .video__card {
+    width: 100%;
+    display: flex;
+  }
+  .video__details .video .video__card .card__content {
+    flex: 1;
+    height: auto;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -84,5 +95,8 @@ a {
   }
   .search-bar {
     width: 200px;
+  }
+  .video__details .video .video__card > a {
+    flex: 1;
   }
 }
