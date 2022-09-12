@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { Typography, Box, Stack } from "@mui/material";
@@ -9,11 +9,13 @@ import ChatIcon from "@mui/icons-material/Chat";
 
 import { Videos, Loader } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { PreferedTheme } from "../App";
 
 const VideoDetail = () => {
   const [videoDetail, setVideoDetail] = useState(null);
   const [videos, setVideos] = useState(null);
   const { id } = useParams();
+  const { theme } = useContext(PreferedTheme);
 
   useEffect(() => {
     fetchFromAPI(`videos?part=snippet,statistics&id=${id}`).then((data) => {
@@ -43,16 +45,26 @@ const VideoDetail = () => {
               className="react-player"
               controls
             />
-            <Typography color="#fff" variant="h5" fontWeight="bold" p={2}>
+            <Typography
+              color={theme === "light" ? "#000" : "#fff"}
+              variant="h5"
+              fontWeight="bold"
+              p={2}
+            >
               {title}
             </Typography>
-            <Typography color="#fff" variant="body1" fontWeight="bold" p={2}>
+            <Typography
+              color={theme === "light" ? "#000" : "#fff"}
+              variant="body1"
+              fontWeight="bold"
+              p={2}
+            >
               {description.substring(0, 150) + "...read more"}
             </Typography>
             <Stack
               direction="row"
               justifyContent="space-between"
-              sx={{ color: "#fff" }}
+              sx={{ color: theme === "light" ? "#000" : "#fff" }}
               py={1}
               px={2}
             >
@@ -60,11 +72,15 @@ const VideoDetail = () => {
                 <Typography
                   variant={{ sm: "subtitle1", md: "h6" }}
                   // component={sm: "subtitle1", md: "h6" }
-                  color="#fff"
+                  color={theme === "light" ? "#000" : "#fff"}
                 >
                   {channelTitle}
                   <CheckCircleIcon
-                    sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
+                    sx={{
+                      fontSize: "12px",
+                      color: theme === "light" ? "#000" : "gray",
+                      ml: "5px",
+                    }}
                   />
                 </Typography>
               </Link>

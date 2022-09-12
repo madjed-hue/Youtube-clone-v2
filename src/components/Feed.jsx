@@ -42,7 +42,7 @@ const Feed = () => {
           variant="h4"
           fontWeight="bold"
           mb={2}
-          sx={{ color: "white" }}
+          sx={{ color: "black" }}
         >
           {selectedCategory} <span style={{ color: "#FC1503" }}>videos</span>
         </Typography>
@@ -52,5 +52,5 @@ const Feed = () => {
     </Stack>
   );
 };
-
+// "#FC1503"
 export default Feed;

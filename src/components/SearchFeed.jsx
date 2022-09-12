@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Typography, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { Videos } from "./";
+import { PreferedTheme } from "../App";
 
 const SearchFeed = () => {
   const [videos, setVideos] = useState(null);
   const { searchTerm } = useParams();
+  const { theme } = useContext(PreferedTheme);
 
   useEffect(() => {
     fetchFromAPI(`search?part=snippet&q=${searchTerm}`).then((data) =>
@@ -20,7 +22,7 @@ const SearchFeed = () => {
       <Typography
         variant="h4"
         fontWeight={900}
-        color="white"
+        color={theme === "light" ? "#000" : "#fff"}
         mb={3}
         ml={{ sm: "100px" }}
       >
